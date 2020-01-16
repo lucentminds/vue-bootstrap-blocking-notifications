@@ -1,0 +1,97 @@
+import Vue from 'vue';
+import Main from './Main';
+
+
+class PluginStore {
+
+   constructor (data = {}) {
+      this.storeVM = Vue.observable(data);
+   }
+   
+   get state () {
+      return this.storeVM;
+   }
+}// /PluginStore()
+
+
+const VueBootstrapBlockingNotifications = {
+
+   install: function( Vue, options ){
+      const o_settings = Object.assign( {
+         tag_name: 'vue-bootstrap-blocking-notifications'
+      }, options );
+
+      Vue.component( o_settings.tag_name, Main );
+      Vue.mixin({
+         beforeCreate(){
+            // Provide access to the plugin data.
+            this.$blocking_notification_store = new PluginStore({
+               name: Math.floor( Math.random() * 1000000 ),
+               error: null,
+               problem: null,
+               wait: null,
+            });
+         },// /beforeCreate()
+
+         computed: {
+            blocking_notification (){
+               if( !this.$blocking_notification_store.state ){
+                  return null;
+               }
+
+               if( this.$blocking_notification_store.state.error ){
+                  return {
+                     type: 'error',
+                     message: this.$blocking_notification_store.state.error
+                  };
+               }
+               if( this.$blocking_notification_store.state.problem ){
+                  return {
+                     type: 'problem',
+                     message: this.$blocking_notification_store.state.problem
+                  };
+               }
+
+               if( this.$blocking_notification_store.state.wait ){
+                  return {
+                     type: 'wait',
+                     message: this.$blocking_notification_store.state.wait
+                  };
+               }
+
+               return null;
+            },// /blocking_notification()
+
+            blocking_notification_shown(){
+               const state = this.$blocking_notification_store.state;
+               return state.wait || state.error || state.problem;
+            },
+         },
+
+         methods: {
+            blocking_notification_show( c_type, c_message ){
+               const o_types = {
+                  error: null,
+                  problem: null,
+                  wait: null
+               };
+               o_types[ c_type ] = c_message;
+
+               Object.assign( this.$blocking_notification_store.state, o_types );
+            },// /blocking_notification_show()
+
+            blocking_notification_clear(){
+               Object.assign( this.$blocking_notification_store.state, {
+                  error: null,
+                  problem: null,
+                  wait: null
+               } );
+            },// /blocking_notification_clear()
+         }
+      });
+      
+   }// /install()
+
+};// /VueBootstrapBlockingNotifications{}
+
+export default VueBootstrapBlockingNotifications;

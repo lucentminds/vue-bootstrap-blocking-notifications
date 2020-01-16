@@ -1,0 +1,36 @@
+{
+  "name": "vue-bootstrap-blocking-notifications",
+  "version": "1.0.0",
+  "description": "Vue plugin to make it easy to add bootstrap styled alerts as blocking notifications for your project.",
+  "main": "src/main.js",
+  "scripts": {
+    "test:unit": "vue-cli-service test:unit"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lucentminds/vue-bootstrap-blocking-notifications.git"
+  },
+  "keywords": [],
+  "author": {
+    "name": "Scott Johnson",
+    "url": "https://www.lucentminds.com/"
+  },
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/lucentminds/vue-bootstrap-blocking-notifications/issues"
+  },
+  "homepage": "https://github.com/lucentminds/vue-bootstrap-blocking-notifications#readme",
+  "dependencies": {
+    "vue": "^2.6.11"
+  },
+  "devDependencies": {
+    "@vue/cli-plugin-babel": "^4.1.2",
+    "@vue/cli-plugin-unit-jest": "^4.1.2",
+    "@vue/cli-service": "^4.1.2",
+    "@vue/test-utils": "^1.0.0-beta.30",
+    "babel-eslint": "^10.0.3",
+    "jsdom-global": "^3.0.2",
+    "ts-jest": "^24.3.0",
+    "vue-template-compiler": "^2.6.11"
+  }
+}
