@@ -1,6 +1,6 @@
 <template>
    <div class="blocking-notifications">
-      <blocking-dialog v-if="parent_blocking_notification" :data="parent_blocking_notification" 
+      <blocking-dialog v-if="parent_blocking_notification_data" :data="parent_blocking_notification_data" 
       @ok="clear_blocking_parent_notification"></blocking-dialog>
    </div>
 </template>
@@ -18,7 +18,7 @@ export default {
       parent_store(){
          return this.$parent.$blocking_notification_store;
       },
-      parent_blocking_notification(){
+      parent_blocking_notification_data(){
          return this.$parent.blocking_notification_data;
       }
    },

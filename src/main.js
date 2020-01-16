@@ -34,7 +34,7 @@ const VueBootstrapBlockingNotifications = {
          },// /beforeCreate()
 
          computed: {
-            blocking_notification (){
+            blocking_notification_data (){
                if( !this.$blocking_notification_store.state ){
                   return null;
                }
