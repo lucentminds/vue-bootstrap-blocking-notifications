@@ -1,6 +1,6 @@
 {
   "name": "vue-bootstrap-blocking-notifications",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Vue plugin to make it easy to add bootstrap styled alerts as blocking notifications for your project.",
   "main": "src/main.js",
   "scripts": {
