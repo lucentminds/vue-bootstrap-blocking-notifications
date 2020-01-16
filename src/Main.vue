@@ -19,7 +19,7 @@ export default {
          return this.$parent.$blocking_notification_store;
       },
       parent_blocking_notification(){
-         return this.$parent.blocking_notification;
+         return this.$parent.blocking_notification_data;
       }
    },
 
