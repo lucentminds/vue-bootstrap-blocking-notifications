@@ -30,6 +30,7 @@ const VueBootstrapBlockingNotifications = {
                error: null,
                problem: null,
                wait: null,
+               info: null,
             });
          },// /beforeCreate()
 
@@ -45,10 +46,18 @@ const VueBootstrapBlockingNotifications = {
                      message: this.$blocking_notification_store.state.error
                   };
                }
+               
                if( this.$blocking_notification_store.state.problem ){
                   return {
                      type: 'problem',
                      message: this.$blocking_notification_store.state.problem
+                  };
+               }
+               
+               if( this.$blocking_notification_store.state.info ){
+                  return {
+                     type: 'info',
+                     message: this.$blocking_notification_store.state.info,
                   };
                }
 
@@ -64,18 +73,24 @@ const VueBootstrapBlockingNotifications = {
 
             blocking_notification_shown(){
                const state = this.$blocking_notification_store.state;
-               return state.wait || state.error || state.problem;
+               return state.wait || state.error || state.problem || state.info;
             },
          },
 
          methods: {
-            blocking_notification_show( c_type, c_message ){
+            blocking_notification_show( c_type, c_message, c_title ){
                const o_types = {
                   error: null,
                   problem: null,
-                  wait: null
+                  wait: null,
+                  info: null,
                };
-               o_types[ c_type ] = c_message;
+               if( c_type == 'info' ){
+                  o_types[ c_type ] = {message: c_message, title: c_title || 'Notice'};
+               }
+               else{
+                  o_types[ c_type ] = c_message;
+               }
 
                Object.assign( this.$blocking_notification_store.state, o_types );
             },// /blocking_notification_show()
@@ -84,7 +99,8 @@ const VueBootstrapBlockingNotifications = {
                Object.assign( this.$blocking_notification_store.state, {
                   error: null,
                   problem: null,
-                  wait: null
+                  wait: null,
+                  info: null
                } );
             },// /blocking_notification_clear()
          }

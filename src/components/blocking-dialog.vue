@@ -24,6 +24,19 @@
       </div>
 
 
+      <div class="--bordered" v-if="this.data.type == 'info'">
+         <div class="alert alert-info">{{ this.data.message }}</div>
+         {{ this.data.message }}
+
+         <div class="blocking-dialog__btn-bar">
+            <button class="btn btn-primary" v-on:click="on_click_ok">
+               <i class="fas fa-check"></i>
+               OK
+            </button>
+         </div>
+      </div>
+
+
    </div>
 </template>
 
@@ -31,6 +44,12 @@
 export default {
    props:{
       data: Object
+   },
+
+   computed:{
+      title(){
+         return this.data.title ?this.data.title :'Notice';
+      }
    },
 
    methods:{
