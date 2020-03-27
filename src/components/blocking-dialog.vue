@@ -25,8 +25,8 @@
 
 
       <div class="--bordered" v-if="this.data.type == 'info'">
-         <div class="alert alert-info">{{ this.data.message }}</div>
-         {{ this.data.message }}
+         <div class="alert alert-info">{{ this.data.message.title }}</div>
+         {{ this.data.message.message }}
 
          <div class="blocking-dialog__btn-bar">
             <button class="btn btn-primary" v-on:click="on_click_ok">
