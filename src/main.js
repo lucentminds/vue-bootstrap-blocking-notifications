@@ -31,6 +31,7 @@ const VueBootstrapBlockingNotifications = {
                problem: null,
                wait: null,
                info: null,
+               settings: null,
             });
          },// /beforeCreate()
 
@@ -69,12 +70,16 @@ const VueBootstrapBlockingNotifications = {
                }
 
                return null;
-            },// /blocking_notification()
+            },// /blocking_notification_data()
+
+            blocking_notification_state (){
+               return this.$blocking_notification_store.state;
+            },// /blocking_notification_state()
 
             blocking_notification_shown(){
                const state = this.$blocking_notification_store.state;
                return state.wait || state.error || state.problem || state.info;
-            },
+            },// /blocking_notification_shown()
          },
 
          methods: {
@@ -85,6 +90,27 @@ const VueBootstrapBlockingNotifications = {
                   wait: null,
                   info: null,
                };
+
+               if( typeof c_type == 'object' ){
+                  const o_options = c_type;
+                  c_type = o_options.type;
+
+                  if( c_type == 'info' ){
+                     o_types[ c_type ] = {message: o_options.message, title: o_options.title || 'Notice'};
+                  }
+                  else{
+                     o_types[ c_type ] = o_options.message;
+                  }
+
+                  this.$blocking_notification_store.state.request_options = o_options;
+                  Object.assign( this.$blocking_notification_store.state, {
+                     settings: o_options,
+                  }, o_types );
+                  return;
+               }// /if()
+
+
+
                if( c_type == 'info' ){
                   o_types[ c_type ] = {message: c_message, title: c_title || 'Notice'};
                }
@@ -92,7 +118,13 @@ const VueBootstrapBlockingNotifications = {
                   o_types[ c_type ] = c_message;
                }
 
-               Object.assign( this.$blocking_notification_store.state, o_types );
+               Object.assign( this.$blocking_notification_store.state, {
+                  settings: {
+                     message: c_message,
+                     title: c_title,
+                     type: c_type,
+                  }
+               }, o_types );
             },// /blocking_notification_show()
 
             blocking_notification_clear(){
