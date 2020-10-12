@@ -36,7 +36,7 @@ Create a notification from your Vue component using the global function. Notific
    this.blocking_notification_show( 'wait', 'Wait for it...');
    this.blocking_notification_show( 'problem', 'You need to fix something!');
    this.blocking_notification_show( 'error', 'Oh noes!');
-   this.blocking_notification_show( 'info', 'Look at this!', {title: 'My notice'});
+   this.blocking_notification_show( 'info', 'Oh noes!', {title: 'My notice'});
 ```
 
 ## Custom tag name

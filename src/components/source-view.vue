@@ -41,7 +41,7 @@ export default {
 <style scoped>
 .blocking-dialog-source__code
 {
-   white-space: pre;
+   white-space: pre-wrap;
    font-size: 0.8em;
    font-family: "Courier New", Courier, monospace;
 }

@@ -2,7 +2,7 @@
    <div :class="`blocking-dialog blocking-dialog-${data.type} ${border_class}`">
       <div v-if="is_problem_or_error">
          <div class="alert alert-danger">{{data.message}}</div>
-         <source-view :source="data.source"></source-view>
+         <source-view :source="data.source" v-if="data.source"></source-view>
       </div>
 
       <div v-if="data.type == 'wait'">
