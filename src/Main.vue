@@ -1,6 +1,5 @@
 <template>
    <div class="blocking-notifications">
-      parent_blocking_notification_data:{{parent_blocking_notification_data}}
       <blocking-dialog v-if="parent_blocking_notification_data" :data="parent_blocking_notification_data" 
       @ok="clear_blocking_parent_notification"></blocking-dialog>
    </div>
